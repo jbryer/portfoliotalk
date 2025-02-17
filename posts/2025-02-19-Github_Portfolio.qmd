@@ -1,0 +1,18 @@
+---
+title: "Building a portfolio with Github and Quarto"
+description: "Slides for a talk on how to build a portfolio website using Github"
+date: "2025-02-19"
+categories: ["Github", "Quarto"]
+image: 2025-02-19-Github_Portfolio.png
+---
+
+The slides for the talk given for the CUNY SPS Data Science and Information Systems department are below. The example website can be viewed [here](https://jbryer.github.io/portfoliotalk) and the repository containing the code to generate the website is [here](https://github.com/jbryer/portfoliotalk).
+
+
+{{< revealjs file="slides/Portfolio_Talk.html" height="500px" class="ratio ratio-16x9" >}}
+
+**NOTE:** I am using the an addon Quarto package to add the `revealjs` shortcode. The package documentation is here: https://github.com/coatless-quarto/embedio To install the extension run the following command in the console: 
+
+```
+quarto add coatless-quarto/embedio
+```

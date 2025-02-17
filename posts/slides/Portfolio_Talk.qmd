@@ -1,0 +1,292 @@
+---
+title: "Building a Portfolio with Github and Quarto"
+author: "Jason Bryer, Ph.D."
+date: "February 19, 2025"
+format: 
+  revealjs:
+    theme: [default, custom.scss]
+---
+
+## Static vs Dynamic Websites
+
+***Static*** websites displays the same pre-built content to every visitor...
+
+While a ***dynamic*** websites generate content on the fly based on user interactions. 
+
+An important advantages of *static* websites include faster load times, less bandwidth, and cheaper hosting (often free).
+
+
+## Static Website Frameworks
+
+There are a number of static website frameworks including:
+
+* [Hugo](https://gohugo.io)
+  * [Lots of free themes](https://themes.gohugo.io)
+  * [`blogdown` R package](https://github.com/rstudio/blogdown)
+  * Examples: my [personal website](https://bryer.org) and [CV site](http://cv.bryer.org)
+
+* [Jekyll](https://jekyllrb.com)
+  * [Default framework for Github Pages](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll)
+  * [Lots of free themes](https://github.com/rstudio/blogdown)
+
+* [Quarto](https://quarto.org/docs/websites/)
+  * Relatively new but language agnostic.
+  * Designed to work well with R, Python, Julia, SQL, and any language used by data scientists and programmers.
+  * Example: [DATA 606 course site](https://spring2025.data606.net), [Visual Stats book](https://visualstats.bryer.org)
+
+## Markdown
+
+A common feature of most of the static website frameworks is that the site content is moslty written in [Markdown](https://daringfireball.net/projects/markdown/syntax). Markdown is alightweight markup language for creating formatted text using a plain-text editor originally created by [John Gruber](https://en.wikipedia.org/wiki/John_Gruber). The idea is to write with minimal *markup* and let the website/document creator handle the specific styling. 
+
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics('images/quicktourexample.png')
+```
+
+Here are some additional resources for learning markdown:
+
+* [Markdown Guide](https://www.markdownguide.org)
+* [R Markdown quick tour](https://rmarkdown.rstudio.com/authoring_quick_tour.html)
+* [Markdown for revealjs (this slide deck)](https://revealjs.com/markdown/)
+
+
+## Getting Started
+
+Creating a new Quarto website from the command line:
+
+```{.bash}
+quarto create project website mysite
+```
+
+Or you can clone the repository from this talk:
+
+```{.bash}
+git clone https://github.com/jbryer/portfoliotalk.git
+```
+
+More detailed directions are available on the [Quarto website](https://quarto.org/docs/websites/) including using VSCode and Rstudio.
+
+## Getting Started with RStudio
+
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics('images/rstudio_step1.png')
+```
+
+## Getting Started with RStudio (cont.)
+
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics('images/rstudio_step2.png')
+```
+
+## Getting Started with RStudio (cont.)
+
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics('images/rstudio_step3.png')
+```
+
+
+## Rendering and previewing
+
+You can then preview the website using (this will run a small webserver):
+
+```{.bash}
+quarto preview
+```
+
+Or to render the entire webiste:
+
+```{.bash}
+quarto render
+```
+
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics('images/website_screenshot.png')
+```
+
+## Customizing your website
+
+The `_quarto.yml` file contains a lot of options to customize your website. Full list of options is available here: https://quarto.org/docs/reference/formats/html.html
+
+```{r, file='../../_quarto.yml', eval=FALSE, echo=TRUE}
+```
+
+
+## Home page
+
+The `index.qmd` file is our homepage.
+
+```{r, file='../../index.qmd', eval=FALSE, echo=TRUE}
+```
+
+## Additional Pages
+
+It is easy to add additional pages. The following can serve as a template for new pages.
+
+```{r, file='../../projects.qmd', eval=FALSE, echo=TRUE}
+```
+
+
+Remember, for a page to show up in the navigation bar it needs to be added to the `_quarto.yml` file as well:
+
+```{.bash code-line-numbers="5-6"}
+  navbar:
+    right:
+      - text: "Home"
+        href: index.html
+      - text: "Projects"
+        href: projects.html
+      - text: "Blog"
+        href: blog.html
+      - icon: rss
+        href: blog.xml
+```
+
+
+## Blog posts
+
+Blog posts can be placed in the `/posts` directory. Here is an example QMD file for a blog post:
+
+```{.bash}
+---
+title: "Building a portfolio with Github and Quarto"
+description: "Slides for a talk on how to build a portfolio website using Github"
+date: "2025-02-19"
+categories: ["Github", "Quarto"]
+image: 2025-02-19-Github_Portfolio.png
+---
+
+This is a blog post...
+```
+
+The `blog.qmd` file builds the index of posts. Check that file as there are a few things you can customize.
+
+```{r, file='../../blog.qmd', eval=FALSE, echo=TRUE}
+```
+
+Note that Quarto will automatically build an RSS feed, in this case called `blog.xml`.
+
+## Github Pages
+
+In order to ensure our project is ready to publish to Github, we need to do a couple of things. First, we need to change the output directory for when Quarto renders the website to `docs/`. In the `_quarto.yml` file, change the `outout-dir` parameter:
+
+```{.bash code-line-numbers="3"}
+project:
+  type: website
+  output-dir: docs
+```
+
+## Github Pages (cont.)
+
+Second, Github pages defaults to Jekyll for rendering. To tell Github to not use Jekyll we need to add a file, `.nojekyll`, to the root of our project. Run the following in the terminal appropriate for your platform:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Mac/Linux
+
+```{.bash}
+touch .nojekyll
+```
+:::
+
+::: {.column width="50%"}
+Windows
+
+```{.bash}
+copy NUL .nojekyll
+```
+:::
+
+::::
+
+
+## Managing Git Repo
+
+The following (terminal) commands will create, add, then commit our files to a local git repository:
+
+```{.bash}
+git init -b main                 # Initialize Git repo.
+git add .                        # Add the files to the repo
+git commit -m "Initial version"  # Commit the files to the repo
+```
+
+Or use the RStudio git integration: 
+
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics('images/git_commit.png')
+```
+
+## Pushing to Github
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+
+1. Got to https://github.com/new
+2. Create a new repository on Github (see figure to the right). Note that it is public and we did not initialize anything else (e.g. readme, .gitignore, license, etc.).
+3. The resulting page will have directions, but for now just copy the repository URL to be used in the next step.
+
+:::
+
+::: {.column width="50%"}
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics('images/github_new_repo.png')
+```
+:::
+
+::::
+
+## Pushing to Github (cont.)
+
+4. Run the following command in the terminal. Note that you need to change the URL to your repository from step 3.
+```{.bash}
+git remote add origin https://github.com/jbryer/portfoliotalk.git
+```
+5. Verify the repository was created correctly.
+```{.bash}
+git remote -v
+```
+6. Push the local repository to Github.
+```{.bash}
+git push -u origin master # NOTE: this should be your default branch
+```
+
+
+## Deploying website to Github
+
+Now we can deploy the website to Github. Note that this publishes to the `gh-pages` branch. 
+
+```{.bash}
+quarto publish gh-pages
+```
+
+## Github Pages Setup
+
+Once complete, go to https://github.com/jbryer/portfoliotalk/settings/pages to configure Github Pages.
+
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics('images/github_pages_setup.png')
+```
+
+
+## Github Actions
+
+We can automate the generation and deployment of our website using [Github actions](https://github.com/features/actions). The [file below](https://github.com/jbryer/portfoliotalk/blob/master/.github/workflows/quarto_website.yaml) is located in the `.github/workflows/` directory.
+
+```{r, file='../../.github/workflows/quarto_website.yaml', eval=FALSE, echo=TRUE}
+```
+
+
+## Thank you!
+
+Github repository: https://github.com/jbryer/portfoliotalk
+
+Example website: https://jbryer.github.io/portfoliotalk/
+
+
+Additional Resources:
+
+* [Tom Mock's workshop materials from 2022 rstudio::conf](https://rstudio-conf-2022.github.io/get-started-quarto/)
+* [Quarto Project Website](https://quarto.org)
+* [Gallery of Quarto Projects (including websites)](https://quarto.org/docs/gallery/)
+

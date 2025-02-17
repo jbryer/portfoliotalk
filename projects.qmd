@@ -1,0 +1,6 @@
+---
+title: "Projects"
+comments: false
+---
+
+This is a simple page that lists all of my current projects.
