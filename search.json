@@ -1,10 +1,10 @@
 [
   {
-    "objectID": "posts/2025-02-19-Github_Portfolio.html",
-    "href": "posts/2025-02-19-Github_Portfolio.html",
-    "title": "Building a portfolio with Github and Quarto",
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
     "section": "",
-    "text": "The slides for the talk given for the CUNY SPS Data Science and Information Systems department are below. The example website can be viewed here and the repository containing the code to generate the website is here.\n    View slides in full screen\n       \n      \n    \n  \nNOTE: I am using the an addon Quarto package to add the revealjs shortcode. The package documentation is here: https://github.com/coatless-quarto/embedio To install the extension run the following command in the console:\nquarto add coatless-quarto/embedio"
+    "text": "This is a simple page that lists all of my current projects."
   },
   {
     "objectID": "index.html",
@@ -35,10 +35,10 @@
     "text": "Building a portfolio with Github and Quarto\n\n\n\n\n\n\nGithub\n\n\nQuarto\n\n\n\nSlides for a talk on how to build a portfolio website using Github\n\n\n\n\n\nFeb 19, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "projects.html",
-    "href": "projects.html",
-    "title": "Projects",
+    "objectID": "posts/2025-02-19-Github_Portfolio.html",
+    "href": "posts/2025-02-19-Github_Portfolio.html",
+    "title": "Building a portfolio with Github and Quarto",
     "section": "",
-    "text": "This is a simple page that lists all of my current projects."
+    "text": "The slides for the talk given for the CUNY SPS Data Science and Information Systems department are below. The example website can be viewed here and the repository containing the code to generate the website is here.\n    View slides in full screen\n       \n      \n    \n  \nNOTE: I am using the an addon Quarto package to add the revealjs shortcode. The package documentation is here: https://github.com/coatless-quarto/embedio To install the extension run the following command in the console:\nquarto add coatless-quarto/embedio"
   }
 ]

@@ -435,7 +435,7 @@ Jason Bryer, Ph.D.
 </section>
 <section id="markdown" class="slide level2">
 <h2>Markdown</h2>
-<p>A common feature of most of the static website frameworks is that the site content is moslty written in <a href="https://daringfireball.net/projects/markdown/syntax">Markdown</a>. Markdown is alightweight markup language for creating formatted text using a plain-text editor originally created by <a href="https://en.wikipedia.org/wiki/John_Gruber">John Gruber</a>. The idea is to write with minimal <em>markup</em> and let the website/document creator handle the specific styling.</p>
+<p>A common feature of most of the static website frameworks is that the site content is moslty written in <a href="https://daringfireball.net/projects/markdown/syntax">Markdown</a>. Markdown, originally created by <a href="https://en.wikipedia.org/wiki/John_Gruber">John Gruber</a>, is a lightweight markup language for creating formatted text using a plain-text editor. The idea is to write with minimal <em>markup</em> and let the website/document creator handle the specific styling.</p>
 
 <img data-src="images/quicktourexample.png" class="quarto-figure quarto-figure-center r-stretch" width="1093"><p>Here are some additional resources for learning markdown:</p>
 <ul>
@@ -444,12 +444,38 @@ Jason Bryer, Ph.D.
 <li><a href="https://revealjs.com/markdown/">Markdown for revealjs (this slide deck)</a></li>
 </ul>
 </section>
+<section id="literate-programming" class="slide level2">
+<h2>Literate programming</h2>
+<p>Donald Knuth introduced a programming framework in 1984 called <a href="https://en.wikipedia.org/wiki/Literate_programming">literate programming</a>. The core idea is that a computer program is written in plain language with interspersed (i.e.&nbsp;embedded) code snippets that implement what is described in the plain text. This has been the foundation for researchers conducting reproducible research. For example, data scientists maintain one document that can contains the description of analyses along with the code that performs the analyses. When the document is rendered, all the code is executed and the output (e.g.&nbsp;tables, figures) are embedded within the final document (e.g.&nbsp;PDF, Word, HTML).</p>
+<p><a href="https://rmarkdown.rstudio.com">RMarkdown</a> was an extension to allow for the embedding of R code within markdown documents.This was initially implemented in the <a href="https://github.com/yihui/knitr">knitr</a> and later allowed for embedding of other languages including Python and SQL.</p>
+<p>Quarto extends the ideas of RMarkdown but removes the requirement of R for rendering documents.</p>
+<p>Both Quarto and RMarkdown use the following format to embed code that will be executed when the document is rendered:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href=""></a><span class="in">```{LANGUAGE, OPTIONS}</span></span>
+<span id="cb1-2"><a href=""></a><span class="in">CODE GOES HERE</span></span>
+<span id="cb1-3"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Where <code>LANGUAGE</code> is the programming language (e.g.&nbsp;<code>r</code>, <code>python</code>, <code>sql</code>, <code>bash</code>, etc.).</p>
+</section>
+<section id="common-code-chunk-options" class="slide level2">
+<h2>Common Code Chunk Options</h2>
+<p>Full list of options available here: <a href="https://quarto.org/docs/computations/execution-options.html">https://quarto.org/docs/computations/execution-options.html</a></p>
+<ul>
+<li><code>eval</code> - Evaluate the code chunk (if false, just echos the code into the output).</li>
+<li><code>echo</code> - Include the source code in output</li>
+<li><code>output</code> - Include the results of the code (<code>true</code>, <code>false</code>, or <code>asis</code>).</li>
+<li><code>warning</code> - Include warnings in the output.</li>
+<li><code>error</code> - Include errors in the output.</li>
+<li><code>include</code> - Catch all for preventing any output (code or results) from being included (e.g.&nbsp;<code>include: false</code> suppresses all output from the code block).</li>
+<li><code>fig-cap</code> - Figure caption.</li>
+<li><code>fig-alt</code> - Alt text for the figure.</li>
+<li><code>fig.align</code> - Figure alignment (<code>center</code>, <code>left</code>, <code>right</code>)</li>
+</ul>
+</section>
 <section id="getting-started" class="slide level2">
 <h2>Getting Started</h2>
 <p>Creating a new Quarto website from the command line:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href=""></a><span class="ex">quarto</span> create project website mysite</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href=""></a><span class="ex">quarto</span> create project website mysite</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Or you can clone the repository from this talk:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href=""></a><span class="fu">git</span> clone https://github.com/jbryer/portfoliotalk.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href=""></a><span class="fu">git</span> clone https://github.com/jbryer/portfoliotalk.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>More detailed directions are available on the <a href="https://quarto.org/docs/websites/">Quarto website</a> including using VSCode and Rstudio.</p>
 </section>
 <section id="getting-started-with-rstudio" class="slide level2">
@@ -467,198 +493,196 @@ Jason Bryer, Ph.D.
 <section id="rendering-and-previewing" class="slide level2">
 <h2>Rendering and previewing</h2>
 <p>You can then preview the website using (this will run a small webserver):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href=""></a><span class="ex">quarto</span> preview</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href=""></a><span class="ex">quarto</span> preview</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Or to render the entire webiste:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href=""></a><span class="ex">quarto</span> render</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href=""></a><span class="ex">quarto</span> render</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <img data-src="images/website_screenshot.png" class="quarto-figure quarto-figure-center r-stretch" width="1333"></section>
 <section id="customizing-your-website" class="slide level2">
 <h2>Customizing your website</h2>
 <p>The <code>_quarto.yml</code> file contains a lot of options to customize your website. Full list of options is available here: https://quarto.org/docs/reference/formats/html.html</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>project<span class="sc">:</span></span>
-<span id="cb5-2"><a href=""></a>  type<span class="sc">:</span> website</span>
-<span id="cb5-3"><a href=""></a>  output<span class="sc">-</span>dir<span class="sc">:</span> docs</span>
-<span id="cb5-4"><a href=""></a>  render<span class="sc">:</span></span>
-<span id="cb5-5"><a href=""></a>    <span class="sc">-</span> <span class="st">"*.qmd"</span></span>
-<span id="cb5-6"><a href=""></a>    <span class="sc">-</span> <span class="st">"!posts/slides/"</span></span>
-<span id="cb5-7"><a href=""></a></span>
-<span id="cb5-8"><a href=""></a>website<span class="sc">:</span></span>
-<span id="cb5-9"><a href=""></a>  title<span class="sc">:</span> <span class="st">"Jason Bryer, Ph.D."</span></span>
-<span id="cb5-10"><a href=""></a>  site<span class="sc">-</span>url<span class="sc">:</span> https<span class="sc">:</span><span class="er">//</span>jbryer.github.io<span class="sc">/</span>portfoliotalk</span>
-<span id="cb5-11"><a href=""></a>  description<span class="sc">:</span> <span class="st">"Sample portfolio website"</span></span>
-<span id="cb5-12"><a href=""></a>  open<span class="sc">-</span>graph<span class="sc">:</span></span>
-<span id="cb5-13"><a href=""></a>    locale<span class="sc">:</span> en_US</span>
-<span id="cb5-14"><a href=""></a>  twitter<span class="sc">-</span>card<span class="sc">:</span></span>
-<span id="cb5-15"><a href=""></a>    creator<span class="sc">:</span> <span class="st">"@jbryer"</span></span>
-<span id="cb5-16"><a href=""></a>  navbar<span class="sc">:</span></span>
-<span id="cb5-17"><a href=""></a>    right<span class="sc">:</span></span>
-<span id="cb5-18"><a href=""></a>      <span class="sc">-</span> text<span class="sc">:</span> <span class="st">"Home"</span></span>
-<span id="cb5-19"><a href=""></a>        href<span class="sc">:</span> index.html</span>
-<span id="cb5-20"><a href=""></a>      <span class="sc">-</span> text<span class="sc">:</span> <span class="st">"Projects"</span></span>
-<span id="cb5-21"><a href=""></a>        href<span class="sc">:</span> projects.html</span>
-<span id="cb5-22"><a href=""></a>      <span class="sc">-</span> text<span class="sc">:</span> <span class="st">"Blog"</span></span>
-<span id="cb5-23"><a href=""></a>        href<span class="sc">:</span> blog.html</span>
-<span id="cb5-24"><a href=""></a>      <span class="sc">-</span> icon<span class="sc">:</span> rss</span>
-<span id="cb5-25"><a href=""></a>        href<span class="sc">:</span> blog.xml</span>
-<span id="cb5-26"><a href=""></a>  page<span class="sc">-</span>footer<span class="sc">:</span></span>
-<span id="cb5-27"><a href=""></a>    left<span class="sc">:</span> <span class="st">"Site created with Quarto by Jason Bryer."</span></span>
-<span id="cb5-28"><a href=""></a></span>
-<span id="cb5-29"><a href=""></a>format<span class="sc">:</span></span>
-<span id="cb5-30"><a href=""></a>  html<span class="sc">:</span></span>
-<span id="cb5-31"><a href=""></a>    theme<span class="sc">:</span> sandstone</span>
-<span id="cb5-32"><a href=""></a>    css<span class="sc">:</span> styles.css</span>
-<span id="cb5-33"><a href=""></a>    toc<span class="sc">:</span> true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>project<span class="sc">:</span></span>
+<span id="cb6-2"><a href=""></a>  type<span class="sc">:</span> website</span>
+<span id="cb6-3"><a href=""></a>  output<span class="sc">-</span>dir<span class="sc">:</span> docs</span>
+<span id="cb6-4"><a href=""></a>  render<span class="sc">:</span></span>
+<span id="cb6-5"><a href=""></a>    <span class="sc">-</span> <span class="st">"*.qmd"</span></span>
+<span id="cb6-6"><a href=""></a>    <span class="sc">-</span> <span class="st">"!posts/slides/"</span></span>
+<span id="cb6-7"><a href=""></a></span>
+<span id="cb6-8"><a href=""></a>website<span class="sc">:</span></span>
+<span id="cb6-9"><a href=""></a>  title<span class="sc">:</span> <span class="st">"Jason Bryer, Ph.D."</span></span>
+<span id="cb6-10"><a href=""></a>  site<span class="sc">-</span>url<span class="sc">:</span> https<span class="sc">:</span><span class="er">//</span>jbryer.github.io<span class="sc">/</span>portfoliotalk</span>
+<span id="cb6-11"><a href=""></a>  description<span class="sc">:</span> <span class="st">"Sample portfolio website"</span></span>
+<span id="cb6-12"><a href=""></a>  open<span class="sc">-</span>graph<span class="sc">:</span></span>
+<span id="cb6-13"><a href=""></a>    locale<span class="sc">:</span> en_US</span>
+<span id="cb6-14"><a href=""></a>  twitter<span class="sc">-</span>card<span class="sc">:</span></span>
+<span id="cb6-15"><a href=""></a>    creator<span class="sc">:</span> <span class="st">"@jbryer"</span></span>
+<span id="cb6-16"><a href=""></a>  navbar<span class="sc">:</span></span>
+<span id="cb6-17"><a href=""></a>    right<span class="sc">:</span></span>
+<span id="cb6-18"><a href=""></a>      <span class="sc">-</span> text<span class="sc">:</span> <span class="st">"Home"</span></span>
+<span id="cb6-19"><a href=""></a>        href<span class="sc">:</span> index.html</span>
+<span id="cb6-20"><a href=""></a>      <span class="sc">-</span> text<span class="sc">:</span> <span class="st">"Projects"</span></span>
+<span id="cb6-21"><a href=""></a>        href<span class="sc">:</span> projects.html</span>
+<span id="cb6-22"><a href=""></a>      <span class="sc">-</span> text<span class="sc">:</span> <span class="st">"Blog"</span></span>
+<span id="cb6-23"><a href=""></a>        href<span class="sc">:</span> blog.html</span>
+<span id="cb6-24"><a href=""></a>      <span class="sc">-</span> icon<span class="sc">:</span> rss</span>
+<span id="cb6-25"><a href=""></a>        href<span class="sc">:</span> blog.xml</span>
+<span id="cb6-26"><a href=""></a>  page<span class="sc">-</span>footer<span class="sc">:</span></span>
+<span id="cb6-27"><a href=""></a>    left<span class="sc">:</span> <span class="st">"Site created with Quarto by Jason Bryer."</span></span>
+<span id="cb6-28"><a href=""></a></span>
+<span id="cb6-29"><a href=""></a>format<span class="sc">:</span></span>
+<span id="cb6-30"><a href=""></a>  html<span class="sc">:</span></span>
+<span id="cb6-31"><a href=""></a>    theme<span class="sc">:</span> sandstone</span>
+<span id="cb6-32"><a href=""></a>    css<span class="sc">:</span> styles.css</span>
+<span id="cb6-33"><a href=""></a>    toc<span class="sc">:</span> true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="home-page" class="slide level2">
 <h2>Home page</h2>
 <p>The <code>index.qmd</code> file is our homepage.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="sc">---</span></span>
-<span id="cb6-2"><a href=""></a>title<span class="sc">:</span> <span class="st">"Jason Bryer, Ph.D."</span></span>
-<span id="cb6-3"><a href=""></a>about<span class="sc">:</span> <span class="co"># More info about this page type: https://quarto.org/docs/websites/website-about.html</span></span>
-<span id="cb6-4"><a href=""></a>  template<span class="sc">:</span> trestles <span class="co"># Options include: jolla, trestles, solana, marquee, broadside</span></span>
-<span id="cb6-5"><a href=""></a>  image<span class="sc">:</span> Headshot_Cartoon.jpg</span>
-<span id="cb6-6"><a href=""></a>  links<span class="sc">:</span></span>
-<span id="cb6-7"><a href=""></a>    <span class="sc">-</span> text<span class="sc">:</span> LinkedIn</span>
-<span id="cb6-8"><a href=""></a>      icon<span class="sc">:</span> linkedin</span>
-<span id="cb6-9"><a href=""></a>      url<span class="sc">:</span> <span class="st">"https://www.linkedin.com/in/jasonbryer/"</span></span>
-<span id="cb6-10"><a href=""></a>    <span class="sc">-</span> text<span class="sc">:</span> Mastodon</span>
-<span id="cb6-11"><a href=""></a>      icon<span class="sc">:</span> mastodon</span>
-<span id="cb6-12"><a href=""></a>      url<span class="sc">:</span> <span class="st">"https://vis.social/@jbryer"</span></span>
-<span id="cb6-13"><a href=""></a>    <span class="sc">-</span> text<span class="sc">:</span> GitHub</span>
-<span id="cb6-14"><a href=""></a>      icon<span class="sc">:</span> github</span>
-<span id="cb6-15"><a href=""></a>      url<span class="sc">:</span> <span class="st">"https://github.com/jbryer"</span></span>
-<span id="cb6-16"><a href=""></a>    <span class="sc">-</span> text<span class="sc">:</span> Email</span>
-<span id="cb6-17"><a href=""></a>      icon<span class="sc">:</span> envelope</span>
-<span id="cb6-18"><a href=""></a>      url<span class="sc">:</span> <span class="st">"mailto:jason.bryer@cuny.edu"</span></span>
-<span id="cb6-19"><a href=""></a>    <span class="sc">-</span> text<span class="sc">:</span> CV</span>
-<span id="cb6-20"><a href=""></a>      icon<span class="sc">:</span> file<span class="sc">-</span>pdf</span>
-<span id="cb6-21"><a href=""></a>      url<span class="sc">:</span> <span class="st">"https://github.com/jbryer/CV/blob/master/Bryer_CV.pdf?raw=true"</span></span>
-<span id="cb6-22"><a href=""></a>comments<span class="sc">:</span> false</span>
-<span id="cb6-23"><a href=""></a><span class="sc">---</span></span>
-<span id="cb6-24"><a href=""></a><span class="er">:::</span> {.column<span class="sc">-</span>page}</span>
-<span id="cb6-25"><a href=""></a></span>
-<span id="cb6-26"><a href=""></a></span>
-<span id="cb6-27"><a href=""></a>Dr. Jason Bryer is currently an Assistant Professor and Associate Director <span class="cf">in</span> the Data Science and Information Systems department at the City University of New York. He is currently the Principal Investigator of the <span class="fu">FIPSE</span> (<span class="sc">$</span><span class="dv">3</span> million <span class="co">#P116F150077) and IES funded ($3.8 million R305A210269) Diagnostic Assessment and Achievement of College Skills (DAACS), which is a suite of technological and social supports designed to optimize student learning. Dr. Bryer’s other research interests include quasi-experimental designs with an emphasis on propensity score analysis, data systems to support formative assessment, and the use of open source software for conducting reproducible research. He is the author of over a dozen R packages, including three related to conducting propensity score analyses. When not crunching numbers, Jason is a wedding photographer and proud dad to three boys.</span></span>
-<span id="cb6-28"><a href=""></a></span>
-<span id="cb6-29"><a href=""></a></span>
-<span id="cb6-30"><a href=""></a><span class="do">## Education</span></span>
-<span id="cb6-31"><a href=""></a></span>
-<span id="cb6-32"><a href=""></a></span>
-<span id="cb6-33"><a href=""></a>Ph.D. <span class="cf">in</span> Educational Psychology <span class="sc">&amp;</span> Methodology, <span class="dv">2014</span>, University at Albany</span>
-<span id="cb6-34"><a href=""></a></span>
-<span id="cb6-35"><a href=""></a>M.S. <span class="cf">in</span> Educational Psychology <span class="sc">&amp;</span> Methodology, <span class="dv">2009</span>, University at Albany</span>
-<span id="cb6-36"><a href=""></a></span>
-<span id="cb6-37"><a href=""></a>B.S. <span class="cf">in</span> Mathematics, <span class="dv">1999</span>, The College of Saint Rose</span>
-<span id="cb6-38"><a href=""></a></span>
-<span id="cb6-39"><a href=""></a><span class="do">## Selected Projects</span></span>
-<span id="cb6-40"><a href=""></a></span>
-<span id="cb6-41"><a href=""></a></span>
-<span id="cb6-42"><a href=""></a>[likert](https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>jbryer<span class="sc">/</span>likert) <span class="sc">-</span> Analysis and Visualization of Likert Based Items</span>
-<span id="cb6-43"><a href=""></a></span>
-<span id="cb6-44"><a href=""></a>[medley](https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>jbryer<span class="sc">/</span>medley) <span class="sc">-</span> Predictive Modeling with Missing Data  </span>
-<span id="cb6-45"><a href=""></a></span>
-<span id="cb6-46"><a href=""></a>[clav](https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>clav) <span class="sc">-</span> Cluster Analysis Validation</span>
-<span id="cb6-47"><a href=""></a></span>
-<span id="cb6-48"><a href=""></a></span>
-<span id="cb6-49"><a href=""></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="sc">---</span></span>
+<span id="cb7-2"><a href=""></a>title<span class="sc">:</span> <span class="st">"Jason Bryer, Ph.D."</span></span>
+<span id="cb7-3"><a href=""></a>about<span class="sc">:</span> <span class="co"># More info about this page type: https://quarto.org/docs/websites/website-about.html</span></span>
+<span id="cb7-4"><a href=""></a>  template<span class="sc">:</span> trestles <span class="co"># Options include: jolla, trestles, solana, marquee, broadside</span></span>
+<span id="cb7-5"><a href=""></a>  image<span class="sc">:</span> Headshot_Cartoon.jpg</span>
+<span id="cb7-6"><a href=""></a>  links<span class="sc">:</span></span>
+<span id="cb7-7"><a href=""></a>    <span class="sc">-</span> text<span class="sc">:</span> LinkedIn</span>
+<span id="cb7-8"><a href=""></a>      icon<span class="sc">:</span> linkedin</span>
+<span id="cb7-9"><a href=""></a>      url<span class="sc">:</span> <span class="st">"https://www.linkedin.com/in/jasonbryer/"</span></span>
+<span id="cb7-10"><a href=""></a>    <span class="sc">-</span> text<span class="sc">:</span> Mastodon</span>
+<span id="cb7-11"><a href=""></a>      icon<span class="sc">:</span> mastodon</span>
+<span id="cb7-12"><a href=""></a>      url<span class="sc">:</span> <span class="st">"https://vis.social/@jbryer"</span></span>
+<span id="cb7-13"><a href=""></a>    <span class="sc">-</span> text<span class="sc">:</span> GitHub</span>
+<span id="cb7-14"><a href=""></a>      icon<span class="sc">:</span> github</span>
+<span id="cb7-15"><a href=""></a>      url<span class="sc">:</span> <span class="st">"https://github.com/jbryer"</span></span>
+<span id="cb7-16"><a href=""></a>    <span class="sc">-</span> text<span class="sc">:</span> Email</span>
+<span id="cb7-17"><a href=""></a>      icon<span class="sc">:</span> envelope</span>
+<span id="cb7-18"><a href=""></a>      url<span class="sc">:</span> <span class="st">"mailto:jason.bryer@cuny.edu"</span></span>
+<span id="cb7-19"><a href=""></a>    <span class="sc">-</span> text<span class="sc">:</span> CV</span>
+<span id="cb7-20"><a href=""></a>      icon<span class="sc">:</span> file<span class="sc">-</span>pdf</span>
+<span id="cb7-21"><a href=""></a>      url<span class="sc">:</span> <span class="st">"https://github.com/jbryer/CV/blob/master/Bryer_CV.pdf?raw=true"</span></span>
+<span id="cb7-22"><a href=""></a>comments<span class="sc">:</span> false</span>
+<span id="cb7-23"><a href=""></a><span class="sc">---</span></span>
+<span id="cb7-24"><a href=""></a><span class="er">:::</span> {.column<span class="sc">-</span>page}</span>
+<span id="cb7-25"><a href=""></a></span>
+<span id="cb7-26"><a href=""></a></span>
+<span id="cb7-27"><a href=""></a>Dr. Jason Bryer is currently an Assistant Professor and Associate Director <span class="cf">in</span> the Data Science and Information Systems department at the City University of New York. He is currently the Principal Investigator of the <span class="fu">FIPSE</span> (<span class="sc">$</span><span class="dv">3</span> million <span class="co">#P116F150077) and IES funded ($3.8 million R305A210269) Diagnostic Assessment and Achievement of College Skills (DAACS), which is a suite of technological and social supports designed to optimize student learning. Dr. Bryer’s other research interests include quasi-experimental designs with an emphasis on propensity score analysis, data systems to support formative assessment, and the use of open source software for conducting reproducible research. He is the author of over a dozen R packages, including three related to conducting propensity score analyses. When not crunching numbers, Jason is a wedding photographer and proud dad to three boys.</span></span>
+<span id="cb7-28"><a href=""></a></span>
+<span id="cb7-29"><a href=""></a></span>
+<span id="cb7-30"><a href=""></a><span class="do">## Education</span></span>
+<span id="cb7-31"><a href=""></a></span>
+<span id="cb7-32"><a href=""></a></span>
+<span id="cb7-33"><a href=""></a>Ph.D. <span class="cf">in</span> Educational Psychology <span class="sc">&amp;</span> Methodology, <span class="dv">2014</span>, University at Albany</span>
+<span id="cb7-34"><a href=""></a></span>
+<span id="cb7-35"><a href=""></a>M.S. <span class="cf">in</span> Educational Psychology <span class="sc">&amp;</span> Methodology, <span class="dv">2009</span>, University at Albany</span>
+<span id="cb7-36"><a href=""></a></span>
+<span id="cb7-37"><a href=""></a>B.S. <span class="cf">in</span> Mathematics, <span class="dv">1999</span>, The College of Saint Rose</span>
+<span id="cb7-38"><a href=""></a></span>
+<span id="cb7-39"><a href=""></a><span class="do">## Selected Projects</span></span>
+<span id="cb7-40"><a href=""></a></span>
+<span id="cb7-41"><a href=""></a></span>
+<span id="cb7-42"><a href=""></a>[likert](https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>jbryer<span class="sc">/</span>likert) <span class="sc">-</span> Analysis and Visualization of Likert Based Items</span>
+<span id="cb7-43"><a href=""></a></span>
+<span id="cb7-44"><a href=""></a>[medley](https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>jbryer<span class="sc">/</span>medley) <span class="sc">-</span> Predictive Modeling with Missing Data  </span>
+<span id="cb7-45"><a href=""></a></span>
+<span id="cb7-46"><a href=""></a>[clav](https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>clav) <span class="sc">-</span> Cluster Analysis Validation</span>
+<span id="cb7-47"><a href=""></a></span>
+<span id="cb7-48"><a href=""></a></span>
+<span id="cb7-49"><a href=""></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="additional-pages" class="slide level2">
 <h2>Additional Pages</h2>
 <p>It is easy to add additional pages. The following can serve as a template for new pages.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="sc">---</span></span>
-<span id="cb7-2"><a href=""></a>title<span class="sc">:</span> <span class="st">"Projects"</span></span>
-<span id="cb7-3"><a href=""></a>comments<span class="sc">:</span> false</span>
-<span id="cb7-4"><a href=""></a><span class="sc">---</span></span>
-<span id="cb7-5"><a href=""></a></span>
-<span id="cb7-6"><a href=""></a>This is a simple page that lists all of my current projects.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="sc">---</span></span>
+<span id="cb8-2"><a href=""></a>title<span class="sc">:</span> <span class="st">"Projects"</span></span>
+<span id="cb8-3"><a href=""></a>comments<span class="sc">:</span> false</span>
+<span id="cb8-4"><a href=""></a><span class="sc">---</span></span>
+<span id="cb8-5"><a href=""></a></span>
+<span id="cb8-6"><a href=""></a>This is a simple page that lists all of my current projects.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Remember, for a page to show up in the navigation bar it needs to be added to the <code>_quarto.yml</code> file as well:</p>
-<div class="sourceCode" id="cb8" data-code-line-numbers="5-6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href=""></a>  <span class="ex">navbar:</span></span>
-<span id="cb8-2"><a href=""></a>    <span class="ex">right:</span></span>
-<span id="cb8-3"><a href=""></a>      <span class="ex">-</span> text: <span class="st">"Home"</span></span>
-<span id="cb8-4"><a href=""></a>        <span class="ex">href:</span> index.html</span>
-<span id="cb8-5"><a href=""></a>      <span class="ex">-</span> text: <span class="st">"Projects"</span></span>
-<span id="cb8-6"><a href=""></a>        <span class="ex">href:</span> projects.html</span>
-<span id="cb8-7"><a href=""></a>      <span class="ex">-</span> text: <span class="st">"Blog"</span></span>
-<span id="cb8-8"><a href=""></a>        <span class="ex">href:</span> blog.html</span>
-<span id="cb8-9"><a href=""></a>      <span class="ex">-</span> icon: rss</span>
-<span id="cb8-10"><a href=""></a>        <span class="ex">href:</span> blog.xml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9" data-code-line-numbers="5-6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href=""></a>  <span class="ex">navbar:</span></span>
+<span id="cb9-2"><a href=""></a>    <span class="ex">right:</span></span>
+<span id="cb9-3"><a href=""></a>      <span class="ex">-</span> text: <span class="st">"Home"</span></span>
+<span id="cb9-4"><a href=""></a>        <span class="ex">href:</span> index.html</span>
+<span id="cb9-5"><a href=""></a>      <span class="ex">-</span> text: <span class="st">"Projects"</span></span>
+<span id="cb9-6"><a href=""></a>        <span class="ex">href:</span> projects.html</span>
+<span id="cb9-7"><a href=""></a>      <span class="ex">-</span> text: <span class="st">"Blog"</span></span>
+<span id="cb9-8"><a href=""></a>        <span class="ex">href:</span> blog.html</span>
+<span id="cb9-9"><a href=""></a>      <span class="ex">-</span> icon: rss</span>
+<span id="cb9-10"><a href=""></a>        <span class="ex">href:</span> blog.xml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="blog-posts" class="slide level2">
 <h2>Blog posts</h2>
 <p>Blog posts can be placed in the <code>/posts</code> directory. Here is an example QMD file for a blog post:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href=""></a><span class="ex">---</span></span>
-<span id="cb9-2"><a href=""></a><span class="ex">title:</span> <span class="st">"Building a portfolio with Github and Quarto"</span></span>
-<span id="cb9-3"><a href=""></a><span class="ex">description:</span> <span class="st">"Slides for a talk on how to build a portfolio website using Github"</span></span>
-<span id="cb9-4"><a href=""></a><span class="ex">date:</span> <span class="st">"2025-02-19"</span></span>
-<span id="cb9-5"><a href=""></a><span class="ex">categories:</span> [<span class="st">"Github"</span>, <span class="st">"Quarto"</span>]</span>
-<span id="cb9-6"><a href=""></a><span class="ex">image:</span> 2025-02-19-Github_Portfolio.png</span>
-<span id="cb9-7"><a href=""></a><span class="ex">---</span></span>
-<span id="cb9-8"><a href=""></a></span>
-<span id="cb9-9"><a href=""></a><span class="ex">This</span> is a blog post...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href=""></a><span class="ex">---</span></span>
+<span id="cb10-2"><a href=""></a><span class="ex">title:</span> <span class="st">"Building a portfolio with Github and Quarto"</span></span>
+<span id="cb10-3"><a href=""></a><span class="ex">description:</span> <span class="st">"Slides for a talk on how to build a portfolio website using Github"</span></span>
+<span id="cb10-4"><a href=""></a><span class="ex">date:</span> <span class="st">"2025-02-19"</span></span>
+<span id="cb10-5"><a href=""></a><span class="ex">categories:</span> [<span class="st">"Github"</span>, <span class="st">"Quarto"</span>]</span>
+<span id="cb10-6"><a href=""></a><span class="ex">image:</span> 2025-02-19-Github_Portfolio.png</span>
+<span id="cb10-7"><a href=""></a><span class="ex">---</span></span>
+<span id="cb10-8"><a href=""></a></span>
+<span id="cb10-9"><a href=""></a><span class="ex">This</span> is a blog post...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>blog.qmd</code> file builds the index of posts. Check that file as there are a few things you can customize.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="sc">---</span></span>
-<span id="cb10-2"><a href=""></a>title<span class="sc">:</span> <span class="st">"Blog"</span></span>
-<span id="cb10-3"><a href=""></a>listing<span class="sc">:</span></span>
-<span id="cb10-4"><a href=""></a>  contents<span class="sc">:</span> posts</span>
-<span id="cb10-5"><a href=""></a>  sort<span class="sc">:</span> <span class="st">"date desc"</span></span>
-<span id="cb10-6"><a href=""></a>  type<span class="sc">:</span> default</span>
-<span id="cb10-7"><a href=""></a>  categories<span class="sc">:</span> true</span>
-<span id="cb10-8"><a href=""></a>  sort<span class="sc">-</span>ui<span class="sc">:</span> false</span>
-<span id="cb10-9"><a href=""></a>  filter<span class="sc">-</span>ui<span class="sc">:</span> false</span>
-<span id="cb10-10"><a href=""></a>  <span class="co"># feed:</span></span>
-<span id="cb10-11"><a href=""></a>  <span class="co">#   categories: ["R"]</span></span>
-<span id="cb10-12"><a href=""></a>page<span class="sc">-</span>layout<span class="sc">:</span> full</span>
-<span id="cb10-13"><a href=""></a>title<span class="sc">-</span>block<span class="sc">-</span>banner<span class="sc">:</span> false</span>
-<span id="cb10-14"><a href=""></a><span class="sc">---</span></span>
-<span id="cb10-15"><a href=""></a><span class="er">:::</span> {.column<span class="sc">-</span>page}</span>
-<span id="cb10-16"><a href=""></a></span>
-<span id="cb10-17"><a href=""></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="sc">---</span></span>
+<span id="cb11-2"><a href=""></a>title<span class="sc">:</span> <span class="st">"Blog"</span></span>
+<span id="cb11-3"><a href=""></a>listing<span class="sc">:</span></span>
+<span id="cb11-4"><a href=""></a>  contents<span class="sc">:</span> posts</span>
+<span id="cb11-5"><a href=""></a>  sort<span class="sc">:</span> <span class="st">"date desc"</span></span>
+<span id="cb11-6"><a href=""></a>  type<span class="sc">:</span> default</span>
+<span id="cb11-7"><a href=""></a>  categories<span class="sc">:</span> true</span>
+<span id="cb11-8"><a href=""></a>  sort<span class="sc">-</span>ui<span class="sc">:</span> false</span>
+<span id="cb11-9"><a href=""></a>  filter<span class="sc">-</span>ui<span class="sc">:</span> false</span>
+<span id="cb11-10"><a href=""></a>  <span class="co"># feed:</span></span>
+<span id="cb11-11"><a href=""></a>  <span class="co">#   categories: ["R"]</span></span>
+<span id="cb11-12"><a href=""></a>page<span class="sc">-</span>layout<span class="sc">:</span> full</span>
+<span id="cb11-13"><a href=""></a>title<span class="sc">-</span>block<span class="sc">-</span>banner<span class="sc">:</span> false</span>
+<span id="cb11-14"><a href=""></a><span class="sc">---</span></span>
+<span id="cb11-15"><a href=""></a><span class="er">:::</span> {.column<span class="sc">-</span>page}</span>
+<span id="cb11-16"><a href=""></a></span>
+<span id="cb11-17"><a href=""></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that Quarto will automatically build an RSS feed, in this case called <code>blog.xml</code>.</p>
 </section>
 <section id="github-pages" class="slide level2">
 <h2>Github Pages</h2>
 <p>In order to ensure our project is ready to publish to Github, we need to do a couple of things. First, we need to change the output directory for when Quarto renders the website to <code>docs/</code>. In the <code>_quarto.yml</code> file, change the <code>outout-dir</code> parameter:</p>
-<div class="sourceCode" id="cb11" data-code-line-numbers="3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href=""></a><span class="ex">project:</span></span>
-<span id="cb11-2"><a href=""></a>  <span class="ex">type:</span> website</span>
-<span id="cb11-3"><a href=""></a>  <span class="ex">output-dir:</span> docs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="github-pages-cont." class="slide level2">
-<h2>Github Pages (cont.)</h2>
+<div class="sourceCode" id="cb12" data-code-line-numbers="3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href=""></a><span class="ex">project:</span></span>
+<span id="cb12-2"><a href=""></a>  <span class="ex">type:</span> website</span>
+<span id="cb12-3"><a href=""></a>  <span class="ex">output-dir:</span> docs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br><br></p>
 <p>Second, Github pages defaults to Jekyll for rendering. To tell Github to not use Jekyll we need to add a file, <code>.nojekyll</code>, to the root of our project. Run the following in the terminal appropriate for your platform:</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p>Mac/Linux</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href=""></a><span class="fu">touch</span> .nojekyll</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href=""></a><span class="fu">touch</span> .nojekyll</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 <p>Windows</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href=""></a><span class="ex">copy</span> NUL .nojekyll</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href=""></a><span class="ex">copy</span> NUL .nojekyll</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section>
-<section id="managing-git-repo" class="slide level2">
-<h2>Managing Git Repo</h2>
+<section id="creating-a-local-git-repo" class="slide level2">
+<h2>Creating a Local Git Repo</h2>
 <p>The following (terminal) commands will create, add, then commit our files to a local git repository:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href=""></a><span class="fu">git</span> init <span class="at">-b</span> main                 <span class="co"># Initialize Git repo.</span></span>
-<span id="cb14-2"><a href=""></a><span class="fu">git</span> add .                        <span class="co"># Add the files to the repo</span></span>
-<span id="cb14-3"><a href=""></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initial version"</span>  <span class="co"># Commit the files to the repo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href=""></a><span class="fu">git</span> init <span class="at">-b</span> main                 <span class="co"># Initialize Git repo.</span></span>
+<span id="cb15-2"><a href=""></a><span class="fu">git</span> add .                        <span class="co"># Add the files to the repo</span></span>
+<span id="cb15-3"><a href=""></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initial version"</span>  <span class="co"># Commit the files to the repo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Or use the RStudio git integration:</p>
 
 <img data-src="images/git_commit.png" class="quarto-figure quarto-figure-center r-stretch" width="698"></section>
-<section id="pushing-to-github" class="slide level2">
-<h2>Pushing to Github</h2>
+<section id="publishing-to-github" class="slide level2">
+<h2>Publishing to Github</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ol type="1">
-<li>Got to https://github.com/new</li>
-<li>Create a new repository on Github (see figure to the right). Note that it is public and we did not initialize anything else (e.g.&nbsp;readme, .gitignore, license, etc.).</li>
-<li>The resulting page will have directions, but for now just copy the repository URL to be used in the next step.</li>
+<li><p>Got to https://github.com/new</p></li>
+<li><p>Create a new repository on Github (see figure to the right). Note that it is public and we did not initialize anything else (e.g.&nbsp;readme, .gitignore, license, etc.).</p></li>
+<li><p>The resulting page will have directions, but for now just copy the repository URL to be used in the next step.</p></li>
 </ol>
 </div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
@@ -677,116 +701,129 @@ Jason Bryer, Ph.D.
 <ol start="4" type="1">
 <li>Run the following command in the terminal. Note that you need to change the URL to your repository from step 3.</li>
 </ol>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href=""></a><span class="fu">git</span> remote add origin https://github.com/jbryer/portfoliotalk.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href=""></a><span class="fu">git</span> remote add origin https://github.com/jbryer/portfoliotalk.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="5" type="1">
 <li>Verify the repository was created correctly.</li>
 </ol>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href=""></a><span class="fu">git</span> remote <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href=""></a><span class="fu">git</span> remote <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="6" type="1">
 <li>Push the local repository to Github.</li>
 </ol>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href=""></a><span class="fu">git</span> push <span class="at">-u</span> origin master <span class="co"># </span><span class="al">NOTE</span><span class="co">: this should be your default branch</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href=""></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The source code for your website should not be on Github.</p>
 </section>
 <section id="deploying-website-to-github" class="slide level2">
 <h2>Deploying website to Github</h2>
-<p>Now we can deploy the website to Github. Note that this publishes to the <code>gh-pages</code> branch.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href=""></a><span class="ex">quarto</span> publish gh-pages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="github-pages-setup" class="slide level2">
-<h2>Github Pages Setup</h2>
-<p>Once complete, go to https://github.com/jbryer/portfoliotalk/settings/pages to configure Github Pages.</p>
+<p>Now we can publish the website to Github. Note that this publishes to the <code>gh-pages</code> branch.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href=""></a><span class="ex">quarto</span> publish gh-pages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can verify the site is configured correctly here: <a href="https://github.com/jbryer/portfoliotalk/settings/pages">https://github.com/jbryer/portfoliotalk/settings/pages</a></p>
 
 <img data-src="images/github_pages_setup.png" class="quarto-figure quarto-figure-center r-stretch" width="1111"></section>
+<section id="custom-domain-optional" class="slide level2">
+<h2>Custom Domain (optional)</h2>
+<p>You can register a custom domain at many places. I recommend <a href="https://hover.com">Hover</a> since it is easy to use and reasonably priced. Important steps: create four <code>A</code> records pointing to Github’s IP addresses: <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, and <code>185.199.111.153.</code></p>
+<p>For subdomains, create <code>CNAME</code> record pointing to <code>GITHUB_USER.github.io</code> where <code>GITHUB_USER</code> is your Github username.</p>
+
+<img data-src="images/hover_screenshot.png" class="quarto-figure quarto-figure-center r-stretch" width="1333"><p>Detailed directions on using a custom domain are available on <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">Github’s website</a></p>
+</section>
 <section id="github-actions" class="slide level2">
 <h2>Github Actions</h2>
 <p>We can automate the generation and deployment of our website using <a href="https://github.com/features/actions">Github actions</a>. The <a href="https://github.com/jbryer/portfoliotalk/blob/master/.github/workflows/quarto_website.yaml">file below</a> is located in the <code>.github/workflows/</code> directory.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>on<span class="sc">:</span></span>
-<span id="cb19-2"><a href=""></a>  push<span class="sc">:</span></span>
-<span id="cb19-3"><a href=""></a>    branches<span class="sc">:</span> [main, master]</span>
-<span id="cb19-4"><a href=""></a>  pull_request<span class="sc">:</span></span>
-<span id="cb19-5"><a href=""></a>    branches<span class="sc">:</span> [main, master]</span>
-<span id="cb19-6"><a href=""></a>  <span class="co"># Or when triggered manually</span></span>
-<span id="cb19-7"><a href=""></a>  workflow_dispatch<span class="sc">:</span> {}</span>
-<span id="cb19-8"><a href=""></a></span>
-<span id="cb19-9"><a href=""></a>name<span class="sc">:</span> Render and Publish Quarto Website</span>
-<span id="cb19-10"><a href=""></a></span>
-<span id="cb19-11"><a href=""></a>permissions<span class="sc">:</span></span>
-<span id="cb19-12"><a href=""></a>    contents<span class="sc">:</span> write</span>
-<span id="cb19-13"><a href=""></a>    pages<span class="sc">:</span> write</span>
-<span id="cb19-14"><a href=""></a></span>
-<span id="cb19-15"><a href=""></a>jobs<span class="sc">:</span></span>
-<span id="cb19-16"><a href=""></a>  build<span class="sc">-</span>deploy<span class="sc">:</span></span>
-<span id="cb19-17"><a href=""></a>    runs<span class="sc">-</span>on<span class="sc">:</span> ubuntu<span class="sc">-</span>latest</span>
-<span id="cb19-18"><a href=""></a></span>
-<span id="cb19-19"><a href=""></a>    steps<span class="sc">:</span></span>
-<span id="cb19-20"><a href=""></a>      <span class="sc">-</span> name<span class="sc">:</span> Check out repository</span>
-<span id="cb19-21"><a href=""></a>        uses<span class="sc">:</span> actions<span class="sc">/</span>checkout<span class="sc">@</span>v4</span>
-<span id="cb19-22"><a href=""></a></span>
-<span id="cb19-23"><a href=""></a>      <span class="sc">-</span> name<span class="sc">:</span> Set up Quarto</span>
-<span id="cb19-24"><a href=""></a>        uses<span class="sc">:</span> quarto<span class="sc">-</span>dev<span class="sc">/</span>quarto<span class="sc">-</span>actions<span class="sc">/</span>setup<span class="sc">@</span>v2</span>
-<span id="cb19-25"><a href=""></a>        env<span class="sc">:</span></span>
-<span id="cb19-26"><a href=""></a>          GH_TOKEN<span class="sc">:</span> <span class="er">$</span>{{ secrets.GITHUB_TOKEN }}</span>
-<span id="cb19-27"><a href=""></a>        with<span class="sc">:</span></span>
-<span id="cb19-28"><a href=""></a>          <span class="co"># To install LaTeX to build PDF book</span></span>
-<span id="cb19-29"><a href=""></a>          tinytex<span class="sc">:</span> false</span>
-<span id="cb19-30"><a href=""></a>          <span class="co"># uncomment below and fill to pin a version</span></span>
-<span id="cb19-31"><a href=""></a>          <span class="co"># version: SPECIFIC-QUARTO-VERSION-HERE</span></span>
-<span id="cb19-32"><a href=""></a></span>
-<span id="cb19-33"><a href=""></a>      <span class="co"># add software dependencies here and any libraries</span></span>
-<span id="cb19-34"><a href=""></a></span>
-<span id="cb19-35"><a href=""></a>      <span class="co"># From https://github.com/actions/setup-python</span></span>
-<span id="cb19-36"><a href=""></a>      <span class="co"># - name: Setup Python</span></span>
-<span id="cb19-37"><a href=""></a>      <span class="co">#   uses: actions/setup-python@v3</span></span>
-<span id="cb19-38"><a href=""></a></span>
-<span id="cb19-39"><a href=""></a>      <span class="co"># From https://github.com/r-lib/actions/tree/v2-branch/setup-r</span></span>
-<span id="cb19-40"><a href=""></a>      <span class="co"># - name: Setup R</span></span>
-<span id="cb19-41"><a href=""></a>      <span class="co">#   uses: r-lib/actions/setup-r@v2</span></span>
-<span id="cb19-42"><a href=""></a></span>
-<span id="cb19-43"><a href=""></a>      <span class="co"># From https://github.com/julia-actions/setup-julia</span></span>
-<span id="cb19-44"><a href=""></a>      <span class="co"># - name: Setup Julia</span></span>
-<span id="cb19-45"><a href=""></a>      <span class="co">#   uses: julia-actions/setup-julia@v1</span></span>
-<span id="cb19-46"><a href=""></a></span>
-<span id="cb19-47"><a href=""></a>      <span class="co"># See more at https://github.com/quarto-dev/quarto-actions/blob/main/examples/example-03-dependencies.md</span></span>
-<span id="cb19-48"><a href=""></a></span>
-<span id="cb19-49"><a href=""></a>      <span class="co"># To publish to Netlify, RStudio Connect, or GitHub Pages, uncomment</span></span>
-<span id="cb19-50"><a href=""></a>      <span class="co"># the appropriate block below</span></span>
-<span id="cb19-51"><a href=""></a></span>
-<span id="cb19-52"><a href=""></a>      <span class="co"># - name: Publish to Netlify (and render)</span></span>
-<span id="cb19-53"><a href=""></a>      <span class="co">#   uses: quarto-dev/quarto-actions/publish@v2</span></span>
-<span id="cb19-54"><a href=""></a>      <span class="co">#   with:</span></span>
-<span id="cb19-55"><a href=""></a>      <span class="co">#     target: netlify</span></span>
-<span id="cb19-56"><a href=""></a>      <span class="co">#     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}</span></span>
-<span id="cb19-57"><a href=""></a></span>
-<span id="cb19-58"><a href=""></a>      <span class="co"># - name: Publish to RStudio Connect (and render)</span></span>
-<span id="cb19-59"><a href=""></a>      <span class="co">#   uses: quarto-dev/quarto-actions/publish@v2</span></span>
-<span id="cb19-60"><a href=""></a>      <span class="co">#   with:</span></span>
-<span id="cb19-61"><a href=""></a>      <span class="co">#     target: connect</span></span>
-<span id="cb19-62"><a href=""></a>      <span class="co">#     CONNECT_SERVER: enter-the-server-url-here</span></span>
-<span id="cb19-63"><a href=""></a>      <span class="co">#     CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }}</span></span>
-<span id="cb19-64"><a href=""></a></span>
-<span id="cb19-65"><a href=""></a>      <span class="co"># </span><span class="al">NOTE</span><span class="co">: If Publishing to GitHub Pages, set the permissions correctly (see top of this yaml)</span></span>
-<span id="cb19-66"><a href=""></a>      <span class="sc">-</span> name<span class="sc">:</span> Publish to GitHub <span class="fu">Pages</span> (and render)</span>
-<span id="cb19-67"><a href=""></a>        uses<span class="sc">:</span> quarto<span class="sc">-</span>dev<span class="sc">/</span>quarto<span class="sc">-</span>actions<span class="sc">/</span>publish<span class="sc">@</span>v2</span>
-<span id="cb19-68"><a href=""></a>        with<span class="sc">:</span></span>
-<span id="cb19-69"><a href=""></a>          target<span class="sc">:</span> gh<span class="sc">-</span>pages</span>
-<span id="cb19-70"><a href=""></a>        env<span class="sc">:</span></span>
-<span id="cb19-71"><a href=""></a>          GITHUB_TOKEN<span class="sc">:</span> <span class="er">$</span>{{ secrets.GITHUB_TOKEN }} <span class="co"># this secret is always available for github actions</span></span>
-<span id="cb19-72"><a href=""></a></span>
-<span id="cb19-73"><a href=""></a>      <span class="co"># - name: Publish to confluence</span></span>
-<span id="cb19-74"><a href=""></a>      <span class="co">#   uses: quarto-dev/quarto-actions/publish@v2</span></span>
-<span id="cb19-75"><a href=""></a>      <span class="co">#   with:</span></span>
-<span id="cb19-76"><a href=""></a>      <span class="co">#     target: confluence</span></span>
-<span id="cb19-77"><a href=""></a>      <span class="co">#   env:</span></span>
-<span id="cb19-78"><a href=""></a>      <span class="co">#     CONFLUENCE_USER_EMAIL: ${{ secrets.CONFLUENCE_USER_EMAIL }}</span></span>
-<span id="cb19-79"><a href=""></a>      <span class="co">#     CONFLUENCE_AUTH_TOKEN: ${{ secrets.CONFLUENCE_AUTH_TOKEN }}</span></span>
-<span id="cb19-80"><a href=""></a>      <span class="co">#     CONFLUENCE_DOMAIN: ${{ secrets.CONFLUENCE_DOMAIN }}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>on<span class="sc">:</span></span>
+<span id="cb20-2"><a href=""></a>  push<span class="sc">:</span></span>
+<span id="cb20-3"><a href=""></a>    branches<span class="sc">:</span> [main, master]</span>
+<span id="cb20-4"><a href=""></a></span>
+<span id="cb20-5"><a href=""></a>name<span class="sc">:</span> Render and Publish Quarto WEbsite</span>
+<span id="cb20-6"><a href=""></a></span>
+<span id="cb20-7"><a href=""></a>you need these permissions to publish to GitHub pages</span>
+<span id="cb20-8"><a href=""></a>permissions<span class="sc">:</span></span>
+<span id="cb20-9"><a href=""></a>    contents<span class="sc">:</span> write</span>
+<span id="cb20-10"><a href=""></a>    pages<span class="sc">:</span> write</span>
+<span id="cb20-11"><a href=""></a></span>
+<span id="cb20-12"><a href=""></a>jobs<span class="sc">:</span></span>
+<span id="cb20-13"><a href=""></a>  build<span class="sc">-</span>deploy<span class="sc">:</span></span>
+<span id="cb20-14"><a href=""></a>    runs<span class="sc">-</span>on<span class="sc">:</span> ubuntu<span class="sc">-</span>latest</span>
+<span id="cb20-15"><a href=""></a></span>
+<span id="cb20-16"><a href=""></a>    steps<span class="sc">:</span></span>
+<span id="cb20-17"><a href=""></a>      <span class="sc">-</span> name<span class="sc">:</span> Check out repository</span>
+<span id="cb20-18"><a href=""></a>        uses<span class="sc">:</span> actions<span class="sc">/</span>checkout<span class="sc">@</span>v4</span>
+<span id="cb20-19"><a href=""></a></span>
+<span id="cb20-20"><a href=""></a>      <span class="sc">-</span> name<span class="sc">:</span> Set up Quarto</span>
+<span id="cb20-21"><a href=""></a>        uses<span class="sc">:</span> quarto<span class="sc">-</span>dev<span class="sc">/</span>quarto<span class="sc">-</span>actions<span class="sc">/</span>setup<span class="sc">@</span>v2</span>
+<span id="cb20-22"><a href=""></a>        env<span class="sc">:</span></span>
+<span id="cb20-23"><a href=""></a>          GH_TOKEN<span class="sc">:</span> <span class="er">$</span>{{ secrets.GITHUB_TOKEN }}</span>
+<span id="cb20-24"><a href=""></a>        with<span class="sc">:</span></span>
+<span id="cb20-25"><a href=""></a>          <span class="co"># To install LaTeX to build PDF book</span></span>
+<span id="cb20-26"><a href=""></a>          tinytex<span class="sc">:</span> true</span>
+<span id="cb20-27"><a href=""></a>          <span class="co"># uncomment below and fill to pin a version</span></span>
+<span id="cb20-28"><a href=""></a>          <span class="co"># version: SPECIFIC-QUARTO-VERSION-HERE</span></span>
+<span id="cb20-29"><a href=""></a></span>
+<span id="cb20-30"><a href=""></a>      <span class="co"># add software dependencies here and any libraries</span></span>
+<span id="cb20-31"><a href=""></a></span>
+<span id="cb20-32"><a href=""></a>      <span class="co"># From https://github.com/actions/setup-python</span></span>
+<span id="cb20-33"><a href=""></a>      <span class="co"># - name: Setup Python</span></span>
+<span id="cb20-34"><a href=""></a>      <span class="co">#   uses: actions/setup-python@v3</span></span>
+<span id="cb20-35"><a href=""></a></span>
+<span id="cb20-36"><a href=""></a>      <span class="co"># From https://github.com/r-lib/actions/tree/v2-branch/setup-r</span></span>
+<span id="cb20-37"><a href=""></a>      <span class="co"># - name: Setup R</span></span>
+<span id="cb20-38"><a href=""></a>      <span class="co">#   uses: r-lib/actions/setup-r@v2</span></span>
+<span id="cb20-39"><a href=""></a></span>
+<span id="cb20-40"><a href=""></a>      <span class="co"># From https://github.com/julia-actions/setup-julia</span></span>
+<span id="cb20-41"><a href=""></a>      <span class="co"># - name: Setup Julia</span></span>
+<span id="cb20-42"><a href=""></a>      <span class="co">#   uses: julia-actions/setup-julia@v1</span></span>
+<span id="cb20-43"><a href=""></a></span>
+<span id="cb20-44"><a href=""></a>      <span class="co"># See more at https://github.com/quarto-dev/quarto-actions/blob/main/examples/example-03-dependencies.md</span></span>
+<span id="cb20-45"><a href=""></a></span>
+<span id="cb20-46"><a href=""></a>      <span class="co"># To publish to Netlify, RStudio Connect, or GitHub Pages, uncomment</span></span>
+<span id="cb20-47"><a href=""></a>      <span class="co"># the appropriate block below</span></span>
+<span id="cb20-48"><a href=""></a></span>
+<span id="cb20-49"><a href=""></a>      <span class="co"># - name: Publish to Netlify (and render)</span></span>
+<span id="cb20-50"><a href=""></a>      <span class="co">#   uses: quarto-dev/quarto-actions/publish@v2</span></span>
+<span id="cb20-51"><a href=""></a>      <span class="co">#   with:</span></span>
+<span id="cb20-52"><a href=""></a>      <span class="co">#     target: netlify</span></span>
+<span id="cb20-53"><a href=""></a>      <span class="co">#     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}</span></span>
+<span id="cb20-54"><a href=""></a></span>
+<span id="cb20-55"><a href=""></a>      <span class="co"># - name: Publish to RStudio Connect (and render)</span></span>
+<span id="cb20-56"><a href=""></a>      <span class="co">#   uses: quarto-dev/quarto-actions/publish@v2</span></span>
+<span id="cb20-57"><a href=""></a>      <span class="co">#   with:</span></span>
+<span id="cb20-58"><a href=""></a>      <span class="co">#     target: connect</span></span>
+<span id="cb20-59"><a href=""></a>      <span class="co">#     CONNECT_SERVER: enter-the-server-url-here</span></span>
+<span id="cb20-60"><a href=""></a>      <span class="co">#     CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }}</span></span>
+<span id="cb20-61"><a href=""></a></span>
+<span id="cb20-62"><a href=""></a>      NOTE<span class="sc">:</span> If Publishing to GitHub Pages, set the permissions <span class="fu">correctly</span> (see top of this yaml)</span>
+<span id="cb20-63"><a href=""></a>      <span class="sc">-</span> name<span class="sc">:</span> Publish to GitHub <span class="fu">Pages</span> (and render)</span>
+<span id="cb20-64"><a href=""></a>        uses<span class="sc">:</span> quarto<span class="sc">-</span>dev<span class="sc">/</span>quarto<span class="sc">-</span>actions<span class="sc">/</span>publish<span class="sc">@</span>v2</span>
+<span id="cb20-65"><a href=""></a>        with<span class="sc">:</span></span>
+<span id="cb20-66"><a href=""></a>          target<span class="sc">:</span> gh<span class="sc">-</span>pages</span>
+<span id="cb20-67"><a href=""></a>        env<span class="sc">:</span></span>
+<span id="cb20-68"><a href=""></a>          GITHUB_TOKEN<span class="sc">:</span> <span class="er">$</span>{{ secrets.GITHUB_TOKEN }} <span class="co"># this secret is always available for github actions</span></span>
+<span id="cb20-69"><a href=""></a></span>
+<span id="cb20-70"><a href=""></a>      <span class="co"># - name: Publish to confluence</span></span>
+<span id="cb20-71"><a href=""></a>      <span class="co">#   uses: quarto-dev/quarto-actions/publish@v2</span></span>
+<span id="cb20-72"><a href=""></a>      <span class="co">#   with:</span></span>
+<span id="cb20-73"><a href=""></a>      <span class="co">#     target: confluence</span></span>
+<span id="cb20-74"><a href=""></a>      <span class="co">#   env:</span></span>
+<span id="cb20-75"><a href=""></a>      <span class="co">#     CONFLUENCE_USER_EMAIL: ${{ secrets.CONFLUENCE_USER_EMAIL }}</span></span>
+<span id="cb20-76"><a href=""></a>      <span class="co">#     CONFLUENCE_AUTH_TOKEN: ${{ secrets.CONFLUENCE_AUTH_TOKEN }}</span></span>
+<span id="cb20-77"><a href=""></a>      <span class="co">#     CONFLUENCE_DOMAIN: ${{ secrets.CONFLUENCE_DOMAIN }}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
+<section id="github-actions-1" class="slide level2">
+<h2>Github Actions</h2>
+<p>You can check the status of your Github actions here: <a href="https://github.com/jbryer/portfoliotalk/actions">https://github.com/jbryer/portfoliotalk/actions</a></p>
+
+<img data-src="images/github_actions_screenshot.png" class="quarto-figure quarto-figure-center r-stretch" width="1333"></section>
 <section id="thank-you" class="slide level2">
 <h2>Thank you!</h2>
-<p>Github repository: https://github.com/jbryer/portfoliotalk</p>
-<p>Example website: https://jbryer.github.io/portfoliotalk/</p>
+<p><br><br><br></p>
+<p>Links:</p>
+<ul>
+<li>Github repository: <a href="https://github.com/jbryer/portfoliotalk">https://github.com/jbryer/portfoliotalk</a></li>
+<li>Example website: <a href="https://jbryer.github.io/portfoliotalk/">https://jbryer.github.io/portfoliotalk/</a></li>
+<li>Slide deck: <a href="https://jbryer.github.io/portfoliotalk/posts/slides/Portfolio_Talk.html">https://jbryer.github.io/portfoliotalk/posts/slides/Portfolio_Talk.html</a></li>
+</ul>
+<p><br></p>
 <p>Additional Resources:</p>
 <ul>
 <li><a href="https://rstudio-conf-2022.github.io/get-started-quarto/">Tom Mock’s workshop materials from 2022 rstudio::conf</a></li>
