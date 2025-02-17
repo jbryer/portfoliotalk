@@ -39,6 +39,6 @@
     "href": "posts/2025-02-19-Github_Portfolio.html",
     "title": "Building a portfolio with Github and Quarto",
     "section": "",
-    "text": "The slides for the talk given for the CUNY SPS Data Science and Information Systems department are below. The example website can be viewed here and the repository containing the code to generate the website is here.\n    View slides in full screen\n       \n      \n    \n  \nNOTE: I am using the an addon Quarto package to add the revealjs shortcode. The package documentation is here: https://github.com/coatless-quarto/embedio To install the extension run the following command in the console:\nquarto add coatless-quarto/embedio"
+    "text": "The slides for the talk given for the CUNY SPS Data Science and Information Systems department are below. The example website can be viewed here and the repository containing the code to generate the website is here.\n    View slides in full screen\n       \n      \n    \n  \nNOTE: I am using the a Quarto extension to add the revealjs shortcode. The package documentation is here: https://github.com/coatless-quarto/embedio To install the extension run the following command in the console:\nquarto add coatless-quarto/embedio"
   }
 ]

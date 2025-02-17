@@ -342,7 +342,7 @@ Links:
 
 * Github repository: [https://github.com/jbryer/portfoliotalk](https://github.com/jbryer/portfoliotalk)
 * Example website: [https://jbryer.github.io/portfoliotalk/](https://jbryer.github.io/portfoliotalk/)
-* Slide deck: [https://jbryer.github.io/portfoliotalk/posts/slides/Portfolio_Talk.html](https://jbryer.github.io/portfoliotalk/posts/slides/Portfolio_Talk.html)
+* Slide deck: [https://jbryer.github.io/portfoliotalk/slides/Portfolio_Talk.html](https://jbryer.github.io/portfoliotalk/posts/slides/Portfolio_Talk.html)
 
 <br/>
 
