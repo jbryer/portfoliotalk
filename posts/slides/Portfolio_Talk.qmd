@@ -36,7 +36,7 @@ There are a number of static website frameworks including:
 
 ## Markdown
 
-A common feature of most of the static website frameworks is that the site content is moslty written in [Markdown](https://daringfireball.net/projects/markdown/syntax). Markdown is alightweight markup language for creating formatted text using a plain-text editor originally created by [John Gruber](https://en.wikipedia.org/wiki/John_Gruber). The idea is to write with minimal *markup* and let the website/document creator handle the specific styling. 
+A common feature of most of the static website frameworks is that the site content is moslty written in [Markdown](https://daringfireball.net/projects/markdown/syntax). Markdown, originally created by [John Gruber](https://en.wikipedia.org/wiki/John_Gruber), is a lightweight markup language for creating formatted text using a plain-text editor. The idea is to write with minimal *markup* and let the website/document creator handle the specific styling. 
 
 ```{r, echo=FALSE, fig.align='center'}
 knitr::include_graphics('images/quicktourexample.png')
@@ -47,6 +47,37 @@ Here are some additional resources for learning markdown:
 * [Markdown Guide](https://www.markdownguide.org)
 * [R Markdown quick tour](https://rmarkdown.rstudio.com/authoring_quick_tour.html)
 * [Markdown for revealjs (this slide deck)](https://revealjs.com/markdown/)
+
+## Literate programming
+
+Donald Knuth introduced a programming framework in 1984 called [literate programming](https://en.wikipedia.org/wiki/Literate_programming). The core idea is that a computer program is written in plain language with interspersed (i.e. embedded) code snippets that implement what is described in the plain text. This has been the foundation for researchers conducting reproducible research. For example, data scientists maintain one document that can contains the description of analyses along with the code that performs the analyses. When the document is rendered, all the code is executed and the output (e.g. tables, figures) are embedded within the final document (e.g. PDF, Word, HTML). 
+
+[RMarkdown](https://rmarkdown.rstudio.com) was an extension to allow for the embedding of R code within markdown documents.This was initially implemented in the [knitr](https://github.com/yihui/knitr) and later allowed for embedding of other languages including Python and SQL.
+
+Quarto extends the ideas of RMarkdown but removes the requirement of R for rendering documents. 
+
+Both Quarto and RMarkdown use the following format to embed code that will be executed when the document is rendered:
+
+```{{LANGUAGE, OPTIONS}}
+CODE GOES HERE
+```
+
+Where `LANGUAGE` is the programming language (e.g. `r`, `python`, `sql`, `bash`, etc.).
+
+
+## Common Code Chunk Options
+
+Full list of options available here: [https://quarto.org/docs/computations/execution-options.html](https://quarto.org/docs/computations/execution-options.html)
+
+* `eval` - Evaluate the code chunk (if false, just echos the code into the output).
+* `echo` - Include the source code in output
+* `output` - Include the results of the code (`true`, `false`, or `asis`).
+* `warning` - Include warnings in the output.
+* `error` - Include errors in the output.
+* `include` - Catch all for preventing any output (code or results) from being included (e.g. `include: false` suppresses all output from the code block).
+* `fig-cap` - Figure caption.
+* `fig-alt` - Alt text for the figure.
+* `fig.align` - Figure alignment (`center`, `left`, `right`)
 
 
 ## Getting Started
@@ -174,7 +205,7 @@ project:
   output-dir: docs
 ```
 
-## Github Pages (cont.)
+<br/><br/>
 
 Second, Github pages defaults to Jekyll for rendering. To tell Github to not use Jekyll we need to add a file, `.nojekyll`, to the root of our project. Run the following in the terminal appropriate for your platform:
 
@@ -199,7 +230,7 @@ copy NUL .nojekyll
 ::::
 
 
-## Managing Git Repo
+## Creating a Local Git Repo
 
 The following (terminal) commands will create, add, then commit our files to a local git repository:
 
@@ -215,7 +246,7 @@ Or use the RStudio git integration:
 knitr::include_graphics('images/git_commit.png')
 ```
 
-## Pushing to Github
+## Publishing to Github
 
 :::: {.columns}
 
@@ -223,7 +254,9 @@ knitr::include_graphics('images/git_commit.png')
 
 
 1. Got to https://github.com/new
+
 2. Create a new repository on Github (see figure to the right). Note that it is public and we did not initialize anything else (e.g. readme, .gitignore, license, etc.).
+
 3. The resulting page will have directions, but for now just copy the repository URL to be used in the next step.
 
 :::
@@ -242,31 +275,48 @@ knitr::include_graphics('images/github_new_repo.png')
 ```{.bash}
 git remote add origin https://github.com/jbryer/portfoliotalk.git
 ```
+
+
 5. Verify the repository was created correctly.
 ```{.bash}
 git remote -v
 ```
+
+
 6. Push the local repository to Github.
 ```{.bash}
-git push -u origin master # NOTE: this should be your default branch
+git push -u origin main
 ```
+
+The source code for your website should not be on Github.
 
 
 ## Deploying website to Github
 
-Now we can deploy the website to Github. Note that this publishes to the `gh-pages` branch. 
+Now we can publish the website to Github. Note that this publishes to the `gh-pages` branch. 
 
 ```{.bash}
 quarto publish gh-pages
 ```
 
-## Github Pages Setup
-
-Once complete, go to https://github.com/jbryer/portfoliotalk/settings/pages to configure Github Pages.
+We can verify the site is configured correctly here: [https://github.com/jbryer/portfoliotalk/settings/pages](https://github.com/jbryer/portfoliotalk/settings/pages)
 
 ```{r, echo=FALSE, fig.align='center'}
 knitr::include_graphics('images/github_pages_setup.png')
 ```
+
+
+## Custom Domain (optional)
+
+You can register a custom domain at many places. I recommend [Hover](https://hover.com) since it is easy to use and reasonably priced. Important steps: create four `A` records pointing to Github's IP addresses: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, and `185.199.111.153.`
+
+For subdomains, create `CNAME` record pointing to `GITHUB_USER.github.io` where `GITHUB_USER` is your Github username.
+
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics('images/hover_screenshot.png')
+```
+
+Detailed directions on using a custom domain are available on [Github's website](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
 
 
 ## Github Actions
@@ -276,13 +326,25 @@ We can automate the generation and deployment of our website using [Github actio
 ```{r, file='../../.github/workflows/quarto_website.yaml', eval=FALSE, echo=TRUE}
 ```
 
+## Github Actions
+
+You can check the status of your Github actions here: [https://github.com/jbryer/portfoliotalk/actions](https://github.com/jbryer/portfoliotalk/actions)
+
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics('images/github_actions_screenshot.png')
+```
 
 ## Thank you!
 
-Github repository: https://github.com/jbryer/portfoliotalk
+<br/><br/><br/>
 
-Example website: https://jbryer.github.io/portfoliotalk/
+Links:
 
+* Github repository: [https://github.com/jbryer/portfoliotalk](https://github.com/jbryer/portfoliotalk)
+* Example website: [https://jbryer.github.io/portfoliotalk/](https://jbryer.github.io/portfoliotalk/)
+* Slide deck: [https://jbryer.github.io/portfoliotalk/posts/slides/Portfolio_Talk.html](https://jbryer.github.io/portfoliotalk/posts/slides/Portfolio_Talk.html)
+
+<br/>
 
 Additional Resources:
 
