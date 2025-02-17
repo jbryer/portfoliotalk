@@ -3,9 +3,9 @@ project:
   output-dir: docs
   render:
     - "*.qmd"
-    - "!posts/slides/"
+    - "!slides/"
   post-render:
-    - "cp -rnv posts/slides/. docs/posts/slides/"
+    - "cp -rnv slides/. docs/slides/"
 
 website:
   title: "Jason Bryer, Ph.D."
