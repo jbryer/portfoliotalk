@@ -4,7 +4,6 @@ on:
 
 name: Render and Publish Quarto WEbsite
 
-you need these permissions to publish to GitHub pages
 permissions:
     contents: write
     pages: write
