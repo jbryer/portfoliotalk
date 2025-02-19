@@ -4,8 +4,8 @@ project:
   render:
     - "*.qmd"
     - "!slides/"
-  # post-render:
-  #   - "cp -rnv slides/. docs/slides/"
+  post-render:
+    - "cp -rnv slides/. docs/slides/"
 
 website:
   title: "Jason Bryer, Ph.D."
