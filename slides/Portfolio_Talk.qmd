@@ -137,7 +137,7 @@ knitr::include_graphics('images/website_screenshot.png')
 
 The `_quarto.yml` file contains a lot of options to customize your website. Full list of options is available here: https://quarto.org/docs/reference/formats/html.html
 
-```{r, file='../../_quarto.yml', eval=FALSE, echo=TRUE}
+```{r, file='../_quarto.yml', eval=FALSE, echo=TRUE}
 ```
 
 
@@ -145,14 +145,14 @@ The `_quarto.yml` file contains a lot of options to customize your website. Full
 
 The `index.qmd` file is our homepage.
 
-```{r, file='../../index.qmd', eval=FALSE, echo=TRUE}
+```{r, file='../index.qmd', eval=FALSE, echo=TRUE}
 ```
 
 ## Additional Pages
 
 It is easy to add additional pages. The following can serve as a template for new pages.
 
-```{r, file='../../projects.qmd', eval=FALSE, echo=TRUE}
+```{r, file='../projects.qmd', eval=FALSE, echo=TRUE}
 ```
 
 
@@ -190,7 +190,7 @@ This is a blog post...
 
 The `blog.qmd` file builds the index of posts. Check that file as there are a few things you can customize.
 
-```{r, file='../../blog.qmd', eval=FALSE, echo=TRUE}
+```{r, file='../blog.qmd', eval=FALSE, echo=TRUE}
 ```
 
 Note that Quarto will automatically build an RSS feed, in this case called `blog.xml`.
@@ -323,7 +323,7 @@ Detailed directions on using a custom domain are available on [Github's website]
 
 We can automate the generation and deployment of our website using [Github actions](https://github.com/features/actions). The [file below](https://github.com/jbryer/portfoliotalk/blob/master/.github/workflows/quarto_website.yaml) is located in the `.github/workflows/` directory.
 
-```{r, file='../../.github/workflows/quarto_website.yaml', eval=FALSE, echo=TRUE}
+```{r, file='../.github/workflows/quarto_website.yaml', eval=FALSE, echo=TRUE}
 ```
 
 ## Github Actions

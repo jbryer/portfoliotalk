@@ -3,12 +3,13 @@ title: "Blog"
 listing:
   contents: posts
   sort: "date desc"
-  type: default
+  type: default # Options include default, grid, table
   categories: true
-  sort-ui: false
-  filter-ui: false
-  # feed:
-  #   categories: ["R"]
+  sort-ui: true
+  filter-ui: true
+  # image-height: "0"
+  feed:
+    categories: ["Quarto", "Github"]
 page-layout: full
 title-block-banner: false
 ---

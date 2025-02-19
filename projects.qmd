@@ -1,6 +1,15 @@
 ---
-title: "Projects"
-comments: false
+title: "Blog"
+listing:
+  contents: projects
+  sort: "title"
+  type: grid # Options include default, grid, table
+  categories: true
+  sort-ui: true
+  filter-ui: true
+page-layout: full
+title-block-banner: false
 ---
+::: {.column-page}
 
-This is a simple page that lists all of my current projects.
+:::

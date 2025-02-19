@@ -1,5 +1,6 @@
 ---
 title: "Building a portfolio with Github and Quarto"
+author: "Jason Bryer"
 description: "Slides for a talk on how to build a portfolio website using Github"
 date: "2025-02-19"
 categories: ["Github", "Quarto"]
