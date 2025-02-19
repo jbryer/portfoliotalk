@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-453bbb6d1d9cb7fba2a81fb4686694e5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-9d8ce3552587b2d184a21f37b2b0e480.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -129,17 +129,17 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Blog – Jason Bryer, Ph.D.">
+<link rel="alternate" type="application/rss+xml" title="Jason Bryer, Ph.D." href="blog.xml" data-external="1"><meta property="og:title" content="Blog – Jason Bryer, Ph.D.">
 <meta property="og:image" content="https://jbryer.github.io/portfoliotalk/posts/2025-02-19-Github_Portfolio.png">
 <meta property="og:site_name" content="Jason Bryer, Ph.D.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image:height" content="720">
-<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="600">
+<meta property="og:image:width" content="900">
 <meta name="twitter:title" content="Blog – Jason Bryer, Ph.D.">
 <meta name="twitter:image" content="https://jbryer.github.io/portfoliotalk/posts/2025-02-19-Github_Portfolio.png">
 <meta name="twitter:creator" content="@jbryer">
-<meta name="twitter:image-height" content="720">
-<meta name="twitter:image-width" content="1280">
+<meta name="twitter:image-height" content="600">
+<meta name="twitter:image-width" content="900">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -221,8 +221,33 @@ window.Quarto = {
 
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+         <option value="listing-author" data-direction="asc">
+          Author
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="R2l0aHViJTJDUXVhcnRv" data-listing-date-sort="1739923200000" data-listing-file-modified-sort="1739887741660" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="75">
+<div class="quarto-post image-right" data-index="0" data-categories="R2l0aHViJTJDUXVhcnRv" data-listing-date-sort="1739923200000" data-listing-file-modified-sort="1739983959681" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="75">
 <div class="thumbnail">
 <p><a href="./posts/2025-02-19-Github_Portfolio.html" class="no-external"></a></p><a href="./posts/2025-02-19-Github_Portfolio.html" class="no-external">
 <p><img loading="lazy" src="./posts/2025-02-19-Github_Portfolio.png" class="thumbnail-image"></p>
@@ -251,6 +276,9 @@ Quarto
 <a href="./posts/2025-02-19-Github_Portfolio.html" class="no-external">
 <div class="listing-date">
 Feb 19, 2025
+</div>
+<div class="listing-author">
+Jason Bryer
 </div>
 </a>
 </div>

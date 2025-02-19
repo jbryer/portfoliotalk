@@ -1,8 +1,18 @@
 [
   {
+    "listing": "/categories/r/index.html",
+    "items": []
+  },
+  {
     "listing": "/blog.html",
     "items": [
       "/posts/2025-02-19-Github_Portfolio.html"
+    ]
+  },
+  {
+    "listing": "/projects.html",
+    "items": [
+      "/projects/daacs.html"
     ]
   }
 ]

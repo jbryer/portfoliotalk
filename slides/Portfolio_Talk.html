@@ -508,8 +508,8 @@ Jason Bryer, Ph.D.
 <span id="cb6-4"><a href=""></a>  render<span class="sc">:</span></span>
 <span id="cb6-5"><a href=""></a>    <span class="sc">-</span> <span class="st">"*.qmd"</span></span>
 <span id="cb6-6"><a href=""></a>    <span class="sc">-</span> <span class="st">"!slides/"</span></span>
-<span id="cb6-7"><a href=""></a>  post<span class="sc">-</span>render<span class="sc">:</span></span>
-<span id="cb6-8"><a href=""></a>    <span class="sc">-</span> <span class="st">"cp -rnv slides/. docs/slides/"</span></span>
+<span id="cb6-7"><a href=""></a>  <span class="co"># post-render:</span></span>
+<span id="cb6-8"><a href=""></a>  <span class="co">#   - "cp -rnv slides/. docs/slides/"</span></span>
 <span id="cb6-9"><a href=""></a></span>
 <span id="cb6-10"><a href=""></a>website<span class="sc">:</span></span>
 <span id="cb6-11"><a href=""></a>  title<span class="sc">:</span> <span class="st">"Jason Bryer, Ph.D."</span></span>
@@ -534,7 +534,7 @@ Jason Bryer, Ph.D.
 <span id="cb6-30"><a href=""></a></span>
 <span id="cb6-31"><a href=""></a>format<span class="sc">:</span></span>
 <span id="cb6-32"><a href=""></a>  html<span class="sc">:</span></span>
-<span id="cb6-33"><a href=""></a>    theme<span class="sc">:</span> sandstone</span>
+<span id="cb6-33"><a href=""></a>    theme<span class="sc">:</span> yeti <span class="co"># See for available themes: https://bootswatch.com</span></span>
 <span id="cb6-34"><a href=""></a>    css<span class="sc">:</span> styles.css</span>
 <span id="cb6-35"><a href=""></a>    toc<span class="sc">:</span> true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -569,7 +569,7 @@ Jason Bryer, Ph.D.
 <span id="cb7-24"><a href=""></a><span class="er">:::</span> {.column<span class="sc">-</span>page}</span>
 <span id="cb7-25"><a href=""></a></span>
 <span id="cb7-26"><a href=""></a></span>
-<span id="cb7-27"><a href=""></a>Dr. Jason Bryer is currently an Assistant Professor and Associate Director <span class="cf">in</span> the Data Science and Information Systems department at the City University of New York. He is currently the Principal Investigator of the <span class="fu">FIPSE</span> (<span class="sc">$</span><span class="dv">3</span> million <span class="co">#P116F150077) and IES funded ($3.8 million R305A210269) Diagnostic Assessment and Achievement of College Skills (DAACS), which is a suite of technological and social supports designed to optimize student learning. Dr. Bryer’s other research interests include quasi-experimental designs with an emphasis on propensity score analysis, data systems to support formative assessment, and the use of open source software for conducting reproducible research. He is the author of over a dozen R packages, including three related to conducting propensity score analyses. When not crunching numbers, Jason is a wedding photographer and proud dad to three boys.</span></span>
+<span id="cb7-27"><a href=""></a>Dr. Jason Bryer is currently an Assistant Professor and Associate Director <span class="cf">in</span> the [Data Science and Information Systems](https<span class="sc">:</span><span class="er">//</span>sps.cuny.edu<span class="sc">/</span>academics<span class="sc">/</span>graduate<span class="sc">/</span>master<span class="sc">-</span>science<span class="sc">-</span>data<span class="sc">-</span>science<span class="sc">-</span>ms) department at the [City University of New York](https<span class="sc">:</span><span class="er">//</span>sps.cunuy.edu). He is currently the Principal Investigator of the <span class="fu">FIPSE</span> (<span class="sc">$</span><span class="dv">3</span> million <span class="co">#P116F150077) and IES funded ($3.8 million R305A210269) [Diagnostic Assessment and Achievement of College Skills (DAACS)](https://daacs.net), which is a suite of technological and social supports designed to optimize student learning. Dr. Bryer’s other research interests include quasi-experimental designs with an emphasis on propensity score analysis, data systems to support formative assessment, and the use of open source software for conducting reproducible research. He is the author of over a dozen [R packages](https://github.com/jbryer?tab=repositories), including three related to conducting [propensity score analyses](https://psa.bryer.org). When not crunching numbers, Jason is a [wedding photographer](https://bryerphotography.com) and proud dad to three boys.</span></span>
 <span id="cb7-28"><a href=""></a></span>
 <span id="cb7-29"><a href=""></a></span>
 <span id="cb7-30"><a href=""></a><span class="do">## Education</span></span>
@@ -599,11 +599,20 @@ Jason Bryer, Ph.D.
 <p>It is easy to add additional pages. The following can serve as a template for new pages.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="sc">---</span></span>
-<span id="cb8-2"><a href=""></a>title<span class="sc">:</span> <span class="st">"Projects"</span></span>
-<span id="cb8-3"><a href=""></a>comments<span class="sc">:</span> false</span>
-<span id="cb8-4"><a href=""></a><span class="sc">---</span></span>
-<span id="cb8-5"><a href=""></a></span>
-<span id="cb8-6"><a href=""></a>This is a simple page that lists all of my current projects.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href=""></a>title<span class="sc">:</span> <span class="st">"Blog"</span></span>
+<span id="cb8-3"><a href=""></a>listing<span class="sc">:</span></span>
+<span id="cb8-4"><a href=""></a>  contents<span class="sc">:</span> projects</span>
+<span id="cb8-5"><a href=""></a>  sort<span class="sc">:</span> <span class="st">"title"</span></span>
+<span id="cb8-6"><a href=""></a>  type<span class="sc">:</span> grid <span class="co"># Options include default, grid, table</span></span>
+<span id="cb8-7"><a href=""></a>  categories<span class="sc">:</span> true</span>
+<span id="cb8-8"><a href=""></a>  sort<span class="sc">-</span>ui<span class="sc">:</span> true</span>
+<span id="cb8-9"><a href=""></a>  filter<span class="sc">-</span>ui<span class="sc">:</span> true</span>
+<span id="cb8-10"><a href=""></a>page<span class="sc">-</span>layout<span class="sc">:</span> full</span>
+<span id="cb8-11"><a href=""></a>title<span class="sc">-</span>block<span class="sc">-</span>banner<span class="sc">:</span> false</span>
+<span id="cb8-12"><a href=""></a><span class="sc">---</span></span>
+<span id="cb8-13"><a href=""></a><span class="er">:::</span> {.column<span class="sc">-</span>page}</span>
+<span id="cb8-14"><a href=""></a></span>
+<span id="cb8-15"><a href=""></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Remember, for a page to show up in the navigation bar it needs to be added to the <code>_quarto.yml</code> file as well:</p>
 <div class="sourceCode" id="cb9" data-code-line-numbers="5-6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href=""></a>  <span class="ex">navbar:</span></span>
@@ -636,18 +645,19 @@ Jason Bryer, Ph.D.
 <span id="cb11-3"><a href=""></a>listing<span class="sc">:</span></span>
 <span id="cb11-4"><a href=""></a>  contents<span class="sc">:</span> posts</span>
 <span id="cb11-5"><a href=""></a>  sort<span class="sc">:</span> <span class="st">"date desc"</span></span>
-<span id="cb11-6"><a href=""></a>  type<span class="sc">:</span> default</span>
+<span id="cb11-6"><a href=""></a>  type<span class="sc">:</span> default <span class="co"># Options include default, grid, table</span></span>
 <span id="cb11-7"><a href=""></a>  categories<span class="sc">:</span> true</span>
-<span id="cb11-8"><a href=""></a>  sort<span class="sc">-</span>ui<span class="sc">:</span> false</span>
-<span id="cb11-9"><a href=""></a>  filter<span class="sc">-</span>ui<span class="sc">:</span> false</span>
-<span id="cb11-10"><a href=""></a>  <span class="co"># feed:</span></span>
-<span id="cb11-11"><a href=""></a>  <span class="co">#   categories: ["R"]</span></span>
-<span id="cb11-12"><a href=""></a>page<span class="sc">-</span>layout<span class="sc">:</span> full</span>
-<span id="cb11-13"><a href=""></a>title<span class="sc">-</span>block<span class="sc">-</span>banner<span class="sc">:</span> false</span>
-<span id="cb11-14"><a href=""></a><span class="sc">---</span></span>
-<span id="cb11-15"><a href=""></a><span class="er">:::</span> {.column<span class="sc">-</span>page}</span>
-<span id="cb11-16"><a href=""></a></span>
-<span id="cb11-17"><a href=""></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-8"><a href=""></a>  sort<span class="sc">-</span>ui<span class="sc">:</span> true</span>
+<span id="cb11-9"><a href=""></a>  filter<span class="sc">-</span>ui<span class="sc">:</span> true</span>
+<span id="cb11-10"><a href=""></a>  <span class="co"># image-height: "0"</span></span>
+<span id="cb11-11"><a href=""></a>  feed<span class="sc">:</span></span>
+<span id="cb11-12"><a href=""></a>    categories<span class="sc">:</span> [<span class="st">"Quarto"</span>, <span class="st">"Github"</span>]</span>
+<span id="cb11-13"><a href=""></a>page<span class="sc">-</span>layout<span class="sc">:</span> full</span>
+<span id="cb11-14"><a href=""></a>title<span class="sc">-</span>block<span class="sc">-</span>banner<span class="sc">:</span> false</span>
+<span id="cb11-15"><a href=""></a><span class="sc">---</span></span>
+<span id="cb11-16"><a href=""></a><span class="er">:::</span> {.column<span class="sc">-</span>page}</span>
+<span id="cb11-17"><a href=""></a></span>
+<span id="cb11-18"><a href=""></a><span class="sc">:::</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that Quarto will automatically build an RSS feed, in this case called <code>blog.xml</code>.</p>
 </section>
