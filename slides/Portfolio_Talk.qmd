@@ -338,6 +338,10 @@ knitr::include_graphics('images/github_actions_screenshot.png')
 
 <br/><br/><br/>
 
+:::: {.columns}
+
+::: {.column width="60%"}
+
 Links:
 
 * Github repository: [https://github.com/jbryer/portfoliotalk](https://github.com/jbryer/portfoliotalk)
@@ -351,4 +355,18 @@ Additional Resources:
 * [Tom Mock's workshop materials from 2022 rstudio::conf](https://rstudio-conf-2022.github.io/get-started-quarto/)
 * [Quarto Project Website](https://quarto.org)
 * [Gallery of Quarto Projects (including websites)](https://quarto.org/docs/gallery/)
+
+:::
+
+::: {.column width="40%"}
+
+<br/>
+```{r, echo=FALSE, fig.align='right'}
+qrcode::qr_code('https://github.com/jbryer/portfoliotalk?tab=readme-ov-file')|> plot(col = c('#FAFAFA', 'black'))
+```
+
+:::
+
+::::
+
 
